@@ -11,6 +11,7 @@
 		E078EACF2A3A5380008B7738 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E078EACE2A3A5380008B7738 /* ContentView.swift */; };
 		E078EAD12A3A5381008B7738 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E078EAD02A3A5381008B7738 /* Assets.xcassets */; };
 		E078EAD42A3A5381008B7738 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E078EAD32A3A5381008B7738 /* Preview Assets.xcassets */; };
+		E078EADC2A3A53D5008B7738 /* InstantSearchSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = E078EADB2A3A53D5008B7738 /* InstantSearchSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E078EADC2A3A53D5008B7738 /* InstantSearchSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +85,9 @@
 			dependencies = (
 			);
 			name = Sup_Test_iOS_InstantSearch;
+			packageProductDependencies = (
+				E078EADB2A3A53D5008B7738 /* InstantSearchSwiftUI */,
+			);
 			productName = Sup_Test_iOS_InstantSearch;
 			productReference = E078EAC92A3A5380008B7738 /* Sup_Test_iOS_InstantSearch.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +116,9 @@
 				Base,
 			);
 			mainGroup = E078EAC02A3A537F008B7738;
+			packageReferences = (
+				E078EADA2A3A53D5008B7738 /* XCRemoteSwiftPackageReference "instantsearch-ios" */,
+			);
 			productRefGroup = E078EACA2A3A5380008B7738 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -339,6 +347,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E078EADA2A3A53D5008B7738 /* XCRemoteSwiftPackageReference "instantsearch-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/algolia/instantsearch-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E078EADB2A3A53D5008B7738 /* InstantSearchSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E078EADA2A3A53D5008B7738 /* XCRemoteSwiftPackageReference "instantsearch-ios" */;
+			productName = InstantSearchSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E078EAC12A3A537F008B7738 /* Project object */;
 }
