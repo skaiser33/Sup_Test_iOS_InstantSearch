@@ -9,11 +9,16 @@ import SwiftUI
 
 @main
 struct Sup_Test_iOS_InstantSearchApp: App {
-   let algoliaController = AlgoliaController()
+    let algoliaController = AlgoliaController()
     var body: some Scene {
         WindowGroup {
-          ContentView(searchBoxController: algoliaController.searchBoxController,
-                      hitsController: algoliaController.hitsController)
+          NavigationView {
+            ContentView(searchBoxController: algoliaController.searchBoxController,
+                        hitsController: algoliaController.hitsController)
+          }.onAppear {
+            algoliaController.searcher.search()
+            
+          }
         }
     }
 }
