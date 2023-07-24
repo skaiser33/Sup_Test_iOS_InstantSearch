@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Sup_Test_iOS_InstantSearch
-//
-//  Created by Steven Kaiser on 6/14/23.
-//
-
 import SwiftUI
 import InstantSearchSwiftUI
 import InstantSearchCore
@@ -16,7 +9,7 @@ struct StockItem: Codable {
 struct ContentView: View {
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<StockItem>
-  @ObservedObject var statsController: StatsObservableController
+  @ObservedObject var statsController: StatsTextObservableController
   @ObservedObject var facetListController: FacetListObservableController
   
   @State private var isEditing = false
@@ -27,9 +20,8 @@ struct ContentView: View {
       SearchBar(text: $searchBoxController.query,
                 isEditing: $isEditing,
                 onSubmit: searchBoxController.submit)
-//      UNCOMMENT FOR STATS -- need to escalate, getting error
-//      Text(statsController.stats)
-//        .fontWeight(.medium)
+      Text(statsController.stats)
+        .fontWeight(.medium)
       HitsList(hitsController) { (hit, _) in
         VStack(alignment: .leading, spacing: 10) {
           Text(hit?.name ?? "")
@@ -106,7 +98,7 @@ class AlgoliaController {
   let hitsController: HitsObservableController<StockItem>
   
   let statsInteractor: StatsInteractor
-  let statsController: StatsObservableController
+  let statsController: StatsTextObservableController
   
   let filterState: FilterState
   
@@ -135,8 +127,7 @@ class AlgoliaController {
     hitsInteractor.connectSearcher(searcher)
     hitsInteractor.connectController(hitsController)
     statsInteractor.connectSearcher(searcher)
-//    UNCOMMENT FOR STATS -- need to escalate, getting error
-//    statsInteractor.connectController(statsController)
+    statsInteractor.connectController(statsController)
     facetListInteractor.connectSearcher(searcher, with: "manufacturer")
     facetListInteractor.connectFilterState(filterState, with: "manufacturer", operator: .or)
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
