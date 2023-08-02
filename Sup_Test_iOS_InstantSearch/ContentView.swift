@@ -63,7 +63,6 @@ struct ContentView: View {
         .font(.title)
     })
   }
-  
 }
 
 
@@ -82,7 +81,6 @@ struct ContentView_Previews: PreviewProvider {
       algoliaController.searcher.search()
     }
   }
-  
 }
 
 
@@ -108,7 +106,7 @@ class AlgoliaController {
   init() {
     self.searcher = HitsSearcher(appID: "<<YOUR_APP_ID>>",
                                  apiKey: "<<YOUR_SEARCH_API_KEY>>",
-                                 indexName: "YOUR_INDEX_NAME")
+                                 indexName: "<<YOUR_INDEX_NAME>>")
     self.searchBoxInteractor = .init()
     self.searchBoxController = .init()
     self.hitsInteractor = .init()
@@ -133,8 +131,5 @@ class AlgoliaController {
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
 
   }
-  
-  
-      
 }
 
