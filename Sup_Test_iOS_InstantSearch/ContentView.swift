@@ -67,21 +67,21 @@ struct ContentView: View {
 
 
 
-struct ContentView_Previews: PreviewProvider {
-  
-  static let algoliaController = AlgoliaController()
-  
-  static var previews: some View {
-    NavigationView {
-      ContentView(searchBoxController: algoliaController.searchBoxController,
-                  hitsController: algoliaController.hitsController,
-                  statsController: algoliaController.statsController,
-                  facetListController: algoliaController.facetListController)
-    }.onAppear {
-      algoliaController.searcher.search()
-    }
-  }
-}
+//struct ContentView_Previews: PreviewProvider {
+//
+//  static let algoliaController = AlgoliaController()
+//
+//  static var previews: some View {
+//    NavigationView {
+//      ContentView(searchBoxController: algoliaController.searchBoxController,
+//                  hitsController: algoliaController.hitsController,
+//                  statsController: algoliaController.statsController,
+//                  facetListController: algoliaController.facetListController)
+//    }.onAppear {
+//      algoliaController.searcher.search()
+//    }
+//  }
+//}
 
 
 
@@ -104,9 +104,12 @@ class AlgoliaController {
   let facetListController: FacetListObservableController
   
   init() {
-    self.searcher = HitsSearcher(appID: "<<YOUR_APP_ID>>",
-                                 apiKey: "<<YOUR_SEARCH_API_KEY>>",
-                                 indexName: "<<YOUR_INDEX_NAME>>")
+//    self.searcher = HitsSearcher(appID: "<<YOUR_APP_ID>>",
+//                                 apiKey: "<<YOUR_SEARCH_API_KEY>>",
+//                                 indexName: "<<YOUR_INDEX_NAME>>")
+    self.searcher = HitsSearcher(appID: "latency",
+                                 apiKey: "af044fb0788d6bb15f807e4420592bc5",
+                                 indexName: "products")
     self.searchBoxInteractor = .init()
     self.searchBoxController = .init()
     self.hitsInteractor = .init()
@@ -126,10 +129,9 @@ class AlgoliaController {
     hitsInteractor.connectController(hitsController)
     statsInteractor.connectSearcher(searcher)
     statsInteractor.connectController(statsController)
-    facetListInteractor.connectSearcher(searcher, with: "manufacturer")
-    facetListInteractor.connectFilterState(filterState, with: "manufacturer", operator: .or)
+    facetListInteractor.connectSearcher(searcher, with: "brand")
+    facetListInteractor.connectFilterState(filterState, with: "brand", operator: .or)
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
-
   }
 }
 
