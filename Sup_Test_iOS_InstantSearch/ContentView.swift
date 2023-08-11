@@ -2,9 +2,9 @@ import SwiftUI
 import InstantSearchSwiftUI
 import InstantSearchCore
 
-struct StockItem: Codable {
-  let name: String
-}
+//struct StockItem: Codable {
+//  let name: String
+//}
 
 struct ContentView: View {
   @ObservedObject var searchBoxController: SearchBoxObservableController
