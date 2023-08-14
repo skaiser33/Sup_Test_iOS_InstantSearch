@@ -60,8 +60,16 @@
 				E078EAD02A3A5381008B7738 /* Assets.xcassets */,
 				E0CFC10E2A86D3C200367DA1 /* AlgoliaController.swift */,
 				E0CFC1102A86D42700367DA1 /* StockItem.swift */,
+				E0CFC1122A8A620F00367DA1 /* Preview Content */,
 			);
 			path = Sup_Test_iOS_InstantSearch;
+			sourceTree = "<group>";
+		};
+		E0CFC1122A8A620F00367DA1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
