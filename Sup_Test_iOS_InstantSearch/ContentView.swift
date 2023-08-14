@@ -2,10 +2,6 @@ import SwiftUI
 import InstantSearchSwiftUI
 import InstantSearchCore
 
-struct StockItem: Codable {
-  let name: String
-}
-
 struct ContentView: View {
   @ObservedObject var searchBoxController: SearchBoxObservableController
   @ObservedObject var hitsController: HitsObservableController<StockItem>
@@ -15,6 +11,8 @@ struct ContentView: View {
   @State private var isEditing = false
   @State private var isPresentingFacets = false
 
+  //MARK: - Search Bar and Hits List
+  
   var body: some View {
     VStack(spacing: 7) {
       SearchBar(text: $searchBoxController.query,
@@ -37,6 +35,8 @@ struct ContentView: View {
     .navigationBarItems(trailing: facetsButton())
     .sheet(isPresented: $isPresentingFacets, content: facets)
   }
+  
+//MARK: - Facet List
   
   @ViewBuilder
   private func facets() -> some View {
@@ -64,72 +64,3 @@ struct ContentView: View {
     })
   }
 }
-
-
-
-struct ContentView_Previews: PreviewProvider {
-  
-  static let algoliaController = AlgoliaController()
-  
-  static var previews: some View {
-    NavigationView {
-      ContentView(searchBoxController: algoliaController.searchBoxController,
-                  hitsController: algoliaController.hitsController,
-                  statsController: algoliaController.statsController,
-                  facetListController: algoliaController.facetListController)
-    }.onAppear {
-      algoliaController.searcher.search()
-    }
-  }
-}
-
-
-
-class AlgoliaController {
-  
-  let searcher: HitsSearcher
-
-  let searchBoxInteractor: SearchBoxInteractor
-  let searchBoxController: SearchBoxObservableController
-
-  let hitsInteractor: HitsInteractor<StockItem>
-  let hitsController: HitsObservableController<StockItem>
-  
-  let statsInteractor: StatsInteractor
-  let statsController: StatsTextObservableController
-  
-  let filterState: FilterState
-  
-  let facetListInteractor: FacetListInteractor
-  let facetListController: FacetListObservableController
-  
-  init() {
-    self.searcher = HitsSearcher(appID: "<<YOUR_APP_ID>>",
-                                 apiKey: "<<YOUR_SEARCH_API_KEY>>",
-                                 indexName: "<<YOUR_INDEX_NAME>>")
-    self.searchBoxInteractor = .init()
-    self.searchBoxController = .init()
-    self.hitsInteractor = .init()
-    self.hitsController = .init()
-    self.statsInteractor = .init()
-    self.statsController = .init()
-    self.filterState = .init()
-    self.facetListInteractor = .init()
-    self.facetListController = .init()
-    setupConnections()
-  }
-  
-  func setupConnections() {
-    searchBoxInteractor.connectSearcher(searcher)
-    searchBoxInteractor.connectController(searchBoxController)
-    hitsInteractor.connectSearcher(searcher)
-    hitsInteractor.connectController(hitsController)
-    statsInteractor.connectSearcher(searcher)
-    statsInteractor.connectController(statsController)
-    facetListInteractor.connectSearcher(searcher, with: "manufacturer")
-    facetListInteractor.connectFilterState(filterState, with: "manufacturer", operator: .or)
-    facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
-
-  }
-}
-
