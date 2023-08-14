@@ -1,6 +1,5 @@
 import SwiftUI
 import InstantSearchSwiftUI
-import InstantSearchCore
 
 struct ContentView: View {
   @ObservedObject var searchBoxController: SearchBoxObservableController
@@ -10,7 +9,7 @@ struct ContentView: View {
   
   @State private var isEditing = false
   @State private var isPresentingFacets = false
-
+  
   //MARK: - Search Bar and Hits List
   
   var body: some View {
@@ -36,7 +35,7 @@ struct ContentView: View {
     .sheet(isPresented: $isPresentingFacets, content: facets)
   }
   
-//MARK: - Facet List
+  //MARK: - Facet List
   
   @ViewBuilder
   private func facets() -> some View {
@@ -53,12 +52,12 @@ struct ContentView: View {
       .navigationBarTitle("Brand")
     }
   }
-
+  
   private func facetsButton() -> some View {
     Button(action: {
       isPresentingFacets.toggle()
     },
-    label: {
+           label: {
       Image(systemName: "line.horizontal.3.decrease.circle")
         .font(.title)
     })

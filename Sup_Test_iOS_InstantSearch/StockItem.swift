@@ -8,6 +8,8 @@
  You can add additionalal attributes based on the attributes in your Algolia index's records.
  */
 
+import Foundation
+
 struct StockItem: Codable {
   let name: String
 }
