@@ -10,7 +10,7 @@ struct ContentView: View {
   @State private var isEditing = false
   @State private var isPresentingFacets = false
   
-  //MARK: - Search Bar and Hits List
+  //MARK: - Search Bar, Stats, and Hits List
   
   var body: some View {
     VStack(spacing: 7) {
