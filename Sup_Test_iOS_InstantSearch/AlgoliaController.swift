@@ -42,6 +42,7 @@ class AlgoliaController {
     hitsInteractor.connectController(hitsController)
     statsInteractor.connectSearcher(searcher)
     statsInteractor.connectController(statsController)
+    searcher.connectFilterState(filterState)
     facetListInteractor.connectSearcher(searcher, with: "brand")
     facetListInteractor.connectFilterState(filterState, with: "brand", operator: .or)
     facetListInteractor.connectController(facetListController, with: FacetListPresenter(sortBy: [.isRefined, .count(order: .descending)]))
